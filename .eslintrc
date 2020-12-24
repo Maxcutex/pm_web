@@ -1,0 +1,21 @@
+{
+    "env": {
+      "browser": true,
+      "jest": true,
+      "es6": true,
+      "node": true,
+      "jquery": true
+    },
+    "plugins": ["prettier", "import"],
+    "extends": ["eslint:recommended"],
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+    },
+    "rules": {
+      "no-console": "warn",
+      "no-eval": "error",
+      "import/first": "error"
+    }
+  }
