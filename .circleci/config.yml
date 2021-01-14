@@ -13,14 +13,14 @@ jobs:
             - v1-dependencies-
       - run: 
           name: install dependencies 
-          command: yarn install
+          command: npm install
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: 
           name: run tests
-          command: yarn test
+          command: npm test
   deploy:
     docker:
       - image: circleci/node:9.10.1
@@ -34,7 +34,7 @@ jobs:
             chmod +x scripts/create_env.sh && ./scripts/create_env.sh
       - run: 
           name: install dependencies 
-          command: yarn install
+          command: npm install
       - run:
           name: Update APT sources list
           command: |
