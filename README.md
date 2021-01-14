@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/Maxcutex/pm_web.svg?style=svg)](https://circleci.com/gh/Maxcutex/pm_web)
+[![Coverage Status](https://coveralls.io/repos/github/Maxcutex/pm_web/badge.svg?branch=development)](https://coveralls.io/github/Maxcutex/pm_web?branch=development)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
