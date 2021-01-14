@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/Maxcutex/pm_web.svg?style=svg)](https://circleci.com/gh/Maxcutex/pm_web)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
