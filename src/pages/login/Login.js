@@ -6,7 +6,7 @@ import {
   Button,
   Tabs,
   Tab,
-  TextField,
+  TextField, Select,
   Fade,
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
@@ -31,8 +31,10 @@ function Login(props) {
   // local
   var [isLoading, setIsLoading] = useState(false);
   var [error, setError] = useState(null);
+  var [errorMsg, setErrorMsg] = useState(null);
   var [activeTabId, setActiveTabId] = useState(0);
-  var [nameValue, setNameValue] = useState("");
+  var [firstNameValue, setFirstNameValue] = useState("");
+  var [lastNameValue, setLastNameValue] = useState("");
   var [loginValue, setLoginValue] = useState("admin@flatlogic.com");
   var [passwordValue, setPasswordValue] = useState("password");
 
@@ -70,7 +72,7 @@ function Login(props) {
               </div>
               <Fade in={error}>
                 <Typography color="secondary" className={classes.errorMessage}>
-                  Something is wrong with your login or password :(
+                  {errorMsg} :(
                 </Typography>
               </Fade>
               <TextField
@@ -84,7 +86,7 @@ function Login(props) {
                 value={loginValue}
                 onChange={e => setLoginValue(e.target.value)}
                 margin="normal"
-                placeholder="Email Adress"
+                placeholder="Email Address"
                 type="email"
                 fullWidth
               />
@@ -119,6 +121,7 @@ function Login(props) {
                         props.history,
                         setIsLoading,
                         setError,
+                        setErrorMsg,
                       )
                     }
                     variant="contained"
@@ -148,24 +151,57 @@ function Login(props) {
               </Typography>
               <Fade in={error}>
                 <Typography color="secondary" className={classes.errorMessage}>
-                  Something is wrong with your login or password :(
+                  {errorMsg} :(
                 </Typography>
               </Fade>
               <TextField
-                id="name"
+                id="first_name"
                 InputProps={{
                   classes: {
                     underline: classes.textFieldUnderline,
                     input: classes.textField,
                   },
                 }}
-                value={nameValue}
-                onChange={e => setNameValue(e.target.value)}
+                value={firstNameValue}
+                onChange={e => setFirstNameValue(e.target.value)}
                 margin="normal"
-                placeholder="Full Name"
+                placeholder="First Name"
                 type="text"
                 fullWidth
               />
+              <TextField
+                id="last_name"
+                InputProps={{
+                  classes: {
+                    underline: classes.textFieldUnderline,
+                    input: classes.textField,
+                  },
+                }}
+                value={lastNameValue}
+                onChange={e => setLastNameValue(e.target.value)}
+                margin="normal"
+                placeholder="Last Name"
+                type="text"
+                fullWidth
+              />
+              <Select
+                id="gender"
+                InputProps={{
+                  classes: {
+                    underline: classes.textFieldUnderline,
+                    input: classes.Select,
+                  },
+                }}
+                value={lastNameValue}
+                onChange={e => setLastNameValue(e.target.value)}
+                margin="normal"
+                placeholder="Last Name"
+                type="text"
+                fullWidth
+              >
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </Select>
               <TextField
                 id="email"
                 InputProps={{
@@ -177,7 +213,7 @@ function Login(props) {
                 value={loginValue}
                 onChange={e => setLoginValue(e.target.value)}
                 margin="normal"
-                placeholder="Email Adress"
+                placeholder="Email Address"
                 type="email"
                 fullWidth
               />
@@ -214,7 +250,8 @@ function Login(props) {
                     disabled={
                       loginValue.length === 0 ||
                       passwordValue.length === 0 ||
-                      nameValue.length === 0
+                      firstNameValue.length === 0 ||
+                      lastNameValue.length === 0
                     }
                     size="large"
                     variant="contained"
@@ -245,7 +282,7 @@ function Login(props) {
           )}
         </div>
         <Typography color="primary" className={classes.copyright}>
-        © 2014-{new Date().getFullYear()} <a style={{ textDecoration: 'none', color: 'inherit' }} href="https://flatlogic.com" rel="noopener noreferrer" target="_blank">Flatlogic</a>, LLC. All rights reserved.
+        © 2021-{new Date().getFullYear()} <a style={{ textDecoration: 'none', color: 'inherit' }} href="https://www.webspoons.com" rel="noopener noreferrer" target="_blank">WebSpoons</a>, LLC. All rights reserved.
         </Typography>
       </div>
     </Grid>
