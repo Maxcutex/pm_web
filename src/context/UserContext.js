@@ -1,4 +1,6 @@
 import React from "react";
+import axios from 'axios';
+import {setUserSession, removeUserSession} from './../utils/common';
 
 var UserStateContext = React.createContext();
 var UserDispatchContext = React.createContext();
@@ -49,7 +51,7 @@ export { UserProvider, useUserState, useUserDispatch, loginUser, signOut };
 
 // ###########################################################
 
-function loginUser(dispatch, login, password, history, setIsLoading, setError) {
+function loginUser(dispatch, login, password, history, setIsLoading, setError, setErrorMsg) {
   setError(false);
   setIsLoading(true);
 
@@ -62,15 +64,31 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
 
       history.push('/app/dashboard')
     }, 2000);
+    // axios.post('http://localhost:5000/users/authenticate', { username: login.value, password: password.value }).then(response => {
+    //   setIsLoading(false);
+    //   setUserSession(response.data.token, response.data.user);
+    //   history.push('/dashboard');
+    // }).catch(error => {
+    //   dispatch({ type: "LOGIN_FAILURE" });
+    //   setError(true);
+    //   if (error.response.status === 401) {
+    //     setErrorMsg(error.response.data.message);
+    //   }
+    //   else {
+    //     setErrorMsg("Something went wrong. Please try again later.");
+    //   }
+    // });
   } else {
     dispatch({ type: "LOGIN_FAILURE" });
     setError(true);
     setIsLoading(false);
+    setErrorMsg("Something is wrong with your login or password.");
   }
 }
 
 function signOut(dispatch, history) {
   localStorage.removeItem("id_token");
+  removeUserSession();
   dispatch({ type: "SIGN_OUT_SUCCESS" });
   history.push("/login");
 }
