@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:9.10.1
+      - image: cimg/node:15.5.1
     working_directory: ~/pm_web
     steps:
       - checkout
@@ -13,17 +13,17 @@ jobs:
             - v1-dependencies-
       - run: 
           name: install dependencies 
-          command: npm install
+          command: yarn install
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: 
           name: run tests
-          command: npm test
+          command: yarn test
   deploy:
     docker:
-      - image: circleci/node:9.10.1
+      - image: cimg/node:15.5.1
     steps:
       - checkout
       - setup_remote_docker:
@@ -34,7 +34,7 @@ jobs:
             chmod +x scripts/create_env.sh && ./scripts/create_env.sh
       - run: 
           name: install dependencies 
-          command: npm install
+          command: yarn install
       - run:
           name: Update APT sources list
           command: |
