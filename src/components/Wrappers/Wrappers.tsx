@@ -17,14 +17,14 @@ var useStyles = makeStyles(theme => ({
   },
 }));
 
-function Badge({ children, colorBrightness, color, ...props }) {
+function Badge({ children, colorBrightness, color, ...props }: any) {
   var classes = useStyles();
   var theme = useTheme();
   var Styled = createStyled({
     badge: {
       backgroundColor: getColor(color, theme, colorBrightness),
     },
-  });
+  }, null);
 
   return (
     <Styled>
@@ -49,7 +49,7 @@ function Typography({
   colorBrightness,
   color,
   ...props
-}) {
+}: any) {
   var theme = useTheme();
 
   return (
@@ -69,7 +69,8 @@ function Typography({
 function Button({ children, color, className, ...props }) {
   var theme = useTheme();
 
-  var Styled = createStyled({
+  var Styled = createStyled(
+    {
     root: {
       color: getColor(color, theme),
     },
@@ -93,7 +94,7 @@ function Button({ children, color, className, ...props }) {
       backgroundColor: theme.palette.primary.main,
       color: "#fff",
     },
-  });
+  }, null);
 
   return (
     <Styled>
@@ -123,7 +124,7 @@ export { Badge, Typography, Button };
 
 // ########################################################################
 
-function getColor(color, theme, brigtness = "main") {
+function getColor(color: any, theme: any, brigtness = "main") {
   if (color && theme.palette[color] && theme.palette[color][brigtness]) {
     return theme.palette[color][brigtness];
   }
@@ -171,7 +172,7 @@ function getFontSize(size, variant = "", theme) {
   return `calc(${defaultSize} * ${multiplier})`;
 }
 
-function createStyled(styles, options) {
+function createStyled(styles: any, options: any) {
   var Styled = function(props) {
     const { children, ...other } = props;
     return children(other);

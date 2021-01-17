@@ -66,8 +66,9 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError, s
     { username: login, password: password })
     .then(response => {
       setIsLoading(false);
-      setUserSession(response.data.token, response.data.user);
-      history.push('/app/dashboard');
+      setUserSession(response.data.payload.token, response.data.payload.user);
+      dispatch({ type: 'LOGIN_SUCCESS' })
+      history.push('/app/dashboard')
     }).catch(error => {
       if (error.response.status === 401 || error.response.status === 400) {
         setErrorMsg(error.response.data.msg);

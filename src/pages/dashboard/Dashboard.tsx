@@ -27,12 +27,13 @@ import useStyles from "./styles";
 
 // components
 import mock from "./mock";
-import Widget from "../../components/Widget";
-import PageTitle from "../../components/PageTitle";
-import { Typography } from "../../components/Wrappers";
+import Widget from "../../components/Widget/Widget";
+import PageTitle from "../../components/PageTitle/PageTitle";
+import { Typography } from "../../components/Wrappers/Wrappers";
 import Dot from "../../components/Sidebar/components/Dot";
 import Table from "./components/Table/Table";
 import BigStat from "./components/BigStat/BigStat";
+import Summary from "./components/Summary/Summary"
 
 const mainChartData = getMainChartData();
 const PieChartData = [
@@ -42,7 +43,7 @@ const PieChartData = [
   { name: "Group D", value: 200, color: "success" },
 ];
 
-export default function Dashboard(props) {
+const  Dashboard: React.FC = () =>  {
   var classes = useStyles();
   var theme = useTheme();
 
@@ -51,14 +52,72 @@ export default function Dashboard(props) {
 
   return (
     <>
-      <PageTitle title="Dashboard" button={<Button
-      variant="contained"
-      size="medium"
-      color="secondary"
-    >
-        Latest Reports
-    </Button>} />
+      <div>
+        Header container for profile 
+      </div>
       <Grid container spacing={4}>
+        <Grid item xs={12}>
+        <Summary
+            title="Profile Summary"
+            id={0}
+            token=""
+            
+          />
+            
+          
+        </Grid>
+
+        <Grid item xs={12}>
+        <Widget
+            title="Professional Skills Overview"
+            upperTitle
+            bodyClass={classes.fullHeightBody}
+            className={classes.card} disableWidgetMenu={true}
+          >
+
+          </Widget>
+        </Grid>
+
+        <Grid item xs={12}>
+        <Widget
+            title="Work History"
+            upperTitle
+            bodyClass={classes.fullHeightBody}
+            className={classes.card} disableWidgetMenu={true}
+          >
+
+          </Widget>
+        </Grid>
+        <Grid item xs={12}>
+        <Widget
+            title="Educational History"
+            upperTitle
+            bodyClass={classes.fullHeightBody}
+            className={classes.card} disableWidgetMenu={true}
+          >
+
+          </Widget>
+        </Grid>
+        <Grid item xs={6}>
+        <Widget
+            title="Hobbies"
+            upperTitle
+            bodyClass={classes.fullHeightBody}
+            className={classes.card} disableWidgetMenu={true}
+          >
+
+          </Widget>
+        </Grid>
+        <Grid item xs={6}>
+        <Widget
+            title="Interests"
+            upperTitle
+            bodyClass={classes.fullHeightBody}
+            className={classes.card} disableWidgetMenu={true}
+          >
+
+          </Widget>
+        </Grid>
         <Grid item lg={3} md={4} sm={6} xs={12}>
           <Widget
             title="Visits Today"
@@ -426,6 +485,8 @@ export default function Dashboard(props) {
     </>
   );
 }
+
+export default Dashboard;
 
 // #######################################################################
 function getRandomData(length, min, max, multiplier = 10, maxDiff = 10) {

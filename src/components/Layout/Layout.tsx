@@ -20,22 +20,22 @@ import {
 import useStyles from "./styles";
 
 // components
-import Header from "../Header";
-import Sidebar from "../Sidebar";
+import Header from "../Header/Header";
+import Sidebar from "../Sidebar/Sidebar";
 
 // pages
-import Dashboard from "../../pages/dashboard";
-import Typography from "../../pages/typography";
-import Notifications from "../../pages/notifications";
-import Maps from "../../pages/maps";
-import Tables from "../../pages/tables";
-import Icons from "../../pages/icons";
-import Charts from "../../pages/charts";
+import Dashboard from "../../pages/dashboard/Dashboard";
+import Typography from "../../pages/typography/Typography";
+import Notifications from "../../pages/notifications/Notifications";
+import Maps from "../../pages/maps/Maps";
+import Tables from "../../pages/tables/Tables";
+import Icons from "../../pages/icons/Icons";
+import Charts from "../../pages/charts/Charts";
 
 // context
 import { useLayoutState } from "../../context/LayoutContext";
 
-function Layout(props) {
+function Layout(props: any) {
   var classes = useStyles();
 
   // global
@@ -76,15 +76,15 @@ function Layout(props) {
               <div>
                 <Link
                   color={'primary'}
-                  href={'https://flatlogic.com/'}
+                  href={'https://www.webspoons.com/'}
                   target={'_blank'}
                   className={classes.link}
                 >
-                  Flatlogic
+                  Webspoons LLC
                 </Link>
                 <Link
                   color={'primary'}
-                  href={'https://flatlogic.com/about'}
+                  href={'https://www.webspoons.com/about'}
                   target={'_blank'}
                   className={classes.link}
                 >
@@ -92,7 +92,7 @@ function Layout(props) {
                 </Link>
                 <Link
                   color={'primary'}
-                  href={'https://flatlogic.com/blog'}
+                  href={'https://www.webspoons.com/blog'}
                   target={'_blank'}
                   className={classes.link}
                 >
@@ -101,7 +101,7 @@ function Layout(props) {
               </div>
               <div>
                 <Link
-                  href={'https://www.facebook.com/flatlogic'}
+                  href={'https://www.facebook.com/webspoons'}
                   target={'_blank'}
                 >
                   <IconButton aria-label="facebook">
@@ -113,7 +113,7 @@ function Layout(props) {
                   </IconButton>
                 </Link>
                 <Link
-                  href={'https://twitter.com/flatlogic'}
+                  href={'https://twitter.com/webspoons'}
                   target={'_blank'}
                 >
                   <IconButton aria-label="twitter">
@@ -125,7 +125,7 @@ function Layout(props) {
                   </IconButton>
                 </Link>
                 <Link
-                  href={'https://github.com/flatlogic'}
+                  href={'https://github.com/webspoons'}
                   target={'_blank'}
                 >
                   <IconButton

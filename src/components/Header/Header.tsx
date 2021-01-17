@@ -24,7 +24,7 @@ import classNames from "classnames";
 import useStyles from "./styles";
 
 // components
-import { Badge, Typography, Button } from "../Wrappers";
+import { Badge, Typography, Button } from "../Wrappers/Wrappers";
 import Notification from "../Notification/Notification";
 import UserAvatar from "../UserAvatar/UserAvatar";
 
@@ -98,11 +98,11 @@ export default function Header(props) {
   var userDispatch = useUserDispatch();
 
   // local
-  var [mailMenu, setMailMenu] = useState(null);
+  var [mailMenu, setMailMenu] = useState<any | null>(null);
   var [isMailsUnread, setIsMailsUnread] = useState(true);
-  var [notificationsMenu, setNotificationsMenu] = useState(null);
+  var [notificationsMenu, setNotificationsMenu] = useState<any | null>(null);
   var [isNotificationsUnread, setIsNotificationsUnread] = useState(true);
-  var [profileMenu, setProfileMenu] = useState(null);
+  var [profileMenu, setProfileMenu] = useState<any | null>(null);
   var [isSearchOpen, setSearchOpen] = useState(false);
 
   return (

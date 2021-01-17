@@ -36,8 +36,8 @@ function Login(props) {
   var [activeTabId, setActiveTabId] = useState(0);
   var [firstNameValue, setFirstNameValue] = useState("");
   var [lastNameValue, setLastNameValue] = useState("");
-  var [loginValue, setLoginValue] = useState("admin@flatlogic.com");
-  var [passwordValue, setPasswordValue] = useState("password");
+  var [loginValue, setLoginValue] = useState("eno.bassey@webspoons.com");
+  var [passwordValue, setPasswordValue] = useState("demo1");
   console.log("error message: ", errorMessage)
   console.log("error state: ", error)
 
@@ -75,7 +75,7 @@ function Login(props) {
               </div>
               <Fade in={error}>
                 <Typography color="secondary" className={classes.errorMessage}>
-                  {errorMsg} sfgsdfgsdfg:(
+                  {errorMsg} :(
                 </Typography>
               </Fade>
               

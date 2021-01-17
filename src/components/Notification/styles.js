@@ -5,6 +5,7 @@ export default makeStyles(theme => ({
     display: "flex",
     alignItems: "center",
   },
+  notificationIcon: {},
   notificationContained: {
     borderRadius: 45,
     height: 45,
