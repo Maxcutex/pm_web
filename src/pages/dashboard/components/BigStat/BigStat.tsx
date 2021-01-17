@@ -9,16 +9,17 @@ import classnames from "classnames";
 import useStyles from "./styles";
 
 // components
-import Widget from "../../../../components/Widget";
-import { Typography } from "../../../../components/Wrappers";
+import Widget from "../../../../components/Widget/Widget";
+import { Typography } from "../../../../components/Wrappers/Wrappers";
+import { IBigStat } from "../../../../types";
 
-export default function BigStat(props) {
-  var { product, total, color, registrations, bounce } = props;
+const BigStat: React.FC<IBigStat> = ({ product, total, color, registrations, bounce }) =>  {
+  // var { product, total, color, registrations, bounce } = props;
   var classes = useStyles();
   var theme = useTheme();
 
   // local
-  var [value, setValue] = useState("daily");
+  var [value, setValue] = useState<string>("daily");
 
   return (
     <Widget
@@ -112,6 +113,7 @@ export default function BigStat(props) {
   );
 }
 
+export default BigStat;
 // #######################################################################
 
 function getRandomData() {

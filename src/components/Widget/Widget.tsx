@@ -24,7 +24,7 @@ export default function Widget({
   style,
   noWidgetShadow,
   ...props
-}) {
+}: any) {
   var classes = useStyles();
 
   // local

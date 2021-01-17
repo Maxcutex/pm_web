@@ -5,11 +5,11 @@ import { Grid } from "@material-ui/core";
 import useStyles from "./styles";
 
 // components
-import PageTitle from "../../components/PageTitle";
-import Widget from "../../components/Widget";
-import { Typography } from "../../components/Wrappers";
+import PageTitle from "../../components/PageTitle/PageTitle";
+import Widget from "../../components/Widget/Widget";
+import { Typography } from "../../components/Wrappers/Wrappers";
 
-export default function TypographyPage() {
+const TypographyPage: React.FC = () => {
   var classes = useStyles();
 
   return (
@@ -124,3 +124,5 @@ export default function TypographyPage() {
     </>
   );
 }
+
+export default TypographyPage; 

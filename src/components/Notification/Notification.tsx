@@ -23,7 +23,7 @@ import tinycolor from "tinycolor2";
 import useStyles from "./styles";
 
 // components
-import { Typography } from "../Wrappers";
+import { Typography } from "../Wrappers/Wrappers";
 
 const typesIcons = {
   "e-commerce": <ShoppingCartIcon />,
@@ -41,7 +41,7 @@ const typesIcons = {
   disc: <DiscIcon />,
 };
 
-export default function Notification({ variant, ...props }) {
+export default function Notification({ variant, ...props }: any) {
   var classes = useStyles();
   var theme = useTheme();
 
