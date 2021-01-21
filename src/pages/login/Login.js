@@ -35,9 +35,8 @@ function Login(props) {
   var [activeTabId, setActiveTabId] = useState(0);
   var [firstNameValue, setFirstNameValue] = useState("");
   var [lastNameValue, setLastNameValue] = useState("");
-  var [loginValue, setLoginValue] = useState("admin@flatlogic.com");
-  var [passwordValue, setPasswordValue] = useState("password");
-
+  var [loginValue, setLoginValue] = useState("eno.bassey@webspoons.com");
+  var [passwordValue, setPasswordValue] = useState("demo1");
   return (
     <Grid container className={classes.container}>
       <div className={classes.logotypeContainer}>
@@ -75,6 +74,7 @@ function Login(props) {
                   {errorMsg} :(
                 </Typography>
               </Fade>
+              
               <TextField
                 id="email"
                 InputProps={{

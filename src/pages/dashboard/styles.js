@@ -1,6 +1,55 @@
 import { makeStyles } from "@material-ui/styles";
 
 export default makeStyles(theme => ({
+  main_header: {backgroundColor: "#fff", marginLeft: "-24px",
+  marginTop: "-24px", marginRight: "-24px", padding: "0.5rem", marginBottom: "15px", paddingLeft: "26px", paddingTop: "1.5rem", paddingBottom:"1.5rem"},
+  image: {
+    paddingLeft: "0.3rem",
+    width: "8rem", 
+    marginRight: "1rem"
+  },
+  main_description: {
+    color: "#223351",
+    marginRight: "2rem"
+  },
+  main_description_name: {
+    flexBasis: "auto",
+    fontSize: "1.7rem",
+    lineLeight: "1.4375rem",
+  },
+  main_description_position: {
+    color: "#1f2c46",
+    fontSize: "1.1rem",
+  },
+  main_description_contacts: {
+  },
+  buttonEdit: {},
+  buttonEditIcon2: {
+    backgroundColor: "#fff",
+    border: ".0625rem solid #bfc5d2",
+    height: "2.5625rem",
+    color: "#1f2c46",
+    display: "inline-flex",
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: "inherit",
+    fontWeight: "500",
+    borderRadius: "3px",
+    textDecoration: "none",
+    transition: ".3333333333s",
+  },
+  buttonEditIcon: {
+    padding: "0.1rem", 
+    border: "0.1rem solid #cecece", 
+    "&:hover": {
+      cursor:"pointer"
+    },
+    
+    width: "2.1rem",
+    borderRadius: "0.3rem",
+    textAlign: "center",
+    verticalAlign: "middle",
+  },
   card: {
     minHeight: "100%",
     display: "flex",

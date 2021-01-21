@@ -13,8 +13,9 @@ import { useUserState } from "../context/UserContext";
 
 export default function App() {
   // global
-  var { isAuthenticated } = useUserState();
-
+  var { isAuthenticated, isExpired } = useUserState();
+  
+  console.log("is expired is showing :", isExpired)
   return (
     <HashRouter>
       <Switch>
@@ -38,7 +39,8 @@ export default function App() {
       <Route
         {...rest}
         render={props =>
-          isAuthenticated ? (
+          (isAuthenticated ) ? (
+           
             React.createElement(component, props)
           ) : (
             <Redirect
@@ -60,7 +62,8 @@ export default function App() {
       <Route
         {...rest}
         render={props =>
-          isAuthenticated ? (
+          isAuthenticated  ? (
+            
             <Redirect
               to={{
                 pathname: "/",
