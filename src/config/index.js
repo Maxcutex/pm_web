@@ -1,7 +1,7 @@
 const allConfig = {
     development: {
         BASE_URL: 'http://0.0.0.0:3000',
-        PM_API_BASE_URL: 'https://stockman-api.herokuapp.com/api/v1',
+        PM_API_BASE_URL: 'http://127.0.0.1:5000',
     },
 
     production: {

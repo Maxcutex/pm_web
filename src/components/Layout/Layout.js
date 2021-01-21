@@ -76,15 +76,15 @@ function Layout(props) {
               <div>
                 <Link
                   color={'primary'}
-                  href={'https://flatlogic.com/'}
+                  href={'https://webspoons.com/'}
                   target={'_blank'}
                   className={classes.link}
                 >
-                  Flatlogic
+                  Webspoons
                 </Link>
                 <Link
                   color={'primary'}
-                  href={'https://flatlogic.com/about'}
+                  href={'https://www.webspoons.com/about'}
                   target={'_blank'}
                   className={classes.link}
                 >
@@ -92,7 +92,7 @@ function Layout(props) {
                 </Link>
                 <Link
                   color={'primary'}
-                  href={'https://flatlogic.com/blog'}
+                  href={'https://www.webspoons.com/blog'}
                   target={'_blank'}
                   className={classes.link}
                 >
@@ -101,7 +101,7 @@ function Layout(props) {
               </div>
               <div>
                 <Link
-                  href={'https://www.facebook.com/flatlogic'}
+                  href={'https://www.facebook.com/webspoons'}
                   target={'_blank'}
                 >
                   <IconButton aria-label="facebook">
@@ -113,7 +113,7 @@ function Layout(props) {
                   </IconButton>
                 </Link>
                 <Link
-                  href={'https://twitter.com/flatlogic'}
+                  href={'https://twitter.com/webspoons'}
                   target={'_blank'}
                 >
                   <IconButton aria-label="twitter">
@@ -125,7 +125,7 @@ function Layout(props) {
                   </IconButton>
                 </Link>
                 <Link
-                  href={'https://github.com/flatlogic'}
+                  href={'https://github.com/webspoons'}
                   target={'_blank'}
                 >
                   <IconButton

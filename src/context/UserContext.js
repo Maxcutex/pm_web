@@ -2,13 +2,14 @@ import React from "react";
 import axios from 'axios';
 import {setUserSession, removeUserSession} from './../utils/common';
 import { config } from '../config';
+import {getToken} from '../utils/common'
+import {isValid} from '../utils/jwtDecode'
 
 export const baseUrl = config.PM_API_BASE_URL;
 var UserStateContext = React.createContext();
 var UserDispatchContext = React.createContext();
 
 function userReducer(state, action) {
-  console.log("reducer action;",action)
   switch (action.type) {
     case "LOGIN_SUCCESS":
       return { ...state, isAuthenticated: true };
@@ -24,8 +25,10 @@ function userReducer(state, action) {
 
 function UserProvider({ children }) {
   var [state, dispatch] = React.useReducer(userReducer, {
-    isAuthenticated: !!localStorage.getItem("id_token"),
-    token: !!localStorage.getItem("token"),
+    isExpired: !isValid(getToken()),
+    isAuthenticated: !!sessionStorage.getItem("token"),
+    
+    token: !!getToken(),
   });
 
   return (
@@ -66,9 +69,12 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError, s
     { username: login, password: password })
     .then(response => {
       setIsLoading(false);
-      setUserSession(response.data.token, response.data.user);
+      setUserSession(response.data.payload.token, response.data.payload.user);
+      dispatch({ type: "LOGIN_SUCCESS"});
+      console.log("login successful")
       history.push('/app/dashboard');
     }).catch(error => {
+      console.log("error response", error.response)
       if (error.response.status === 401 || error.response.status === 400) {
         setErrorMsg(error.response.data.msg);
       }

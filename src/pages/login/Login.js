@@ -20,14 +20,13 @@ import logo from "./logo.svg";
 import google from "../../images/google.svg";
 
 // context
-import { useUserDispatch, loginUser, useUserState } from "../../context/UserContext";
+import { useUserDispatch, loginUser } from "../../context/UserContext";
 
 function Login(props) {
   var classes = useStyles();
 
   // global
   var userDispatch = useUserDispatch();
-  var { errorMessage } = useUserState();
 
   // local
   var [isLoading, setIsLoading] = useState(false);
@@ -36,11 +35,8 @@ function Login(props) {
   var [activeTabId, setActiveTabId] = useState(0);
   var [firstNameValue, setFirstNameValue] = useState("");
   var [lastNameValue, setLastNameValue] = useState("");
-  var [loginValue, setLoginValue] = useState("admin@flatlogic.com");
-  var [passwordValue, setPasswordValue] = useState("password");
-  console.log("error message: ", errorMessage)
-  console.log("error state: ", error)
-
+  var [loginValue, setLoginValue] = useState("eno.bassey@webspoons.com");
+  var [passwordValue, setPasswordValue] = useState("demo1");
   return (
     <Grid container className={classes.container}>
       <div className={classes.logotypeContainer}>
@@ -75,7 +71,7 @@ function Login(props) {
               </div>
               <Fade in={error}>
                 <Typography color="secondary" className={classes.errorMessage}>
-                  {errorMsg} sfgsdfgsdfg:(
+                  {errorMsg} :(
                 </Typography>
               </Fade>
               

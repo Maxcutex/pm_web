@@ -14,12 +14,12 @@ export const getUser = () => {
   export const removeUserSession = () => {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('user');
-    localStorage.removeItem('id_token');
+    // localStorage.removeItem('id_token');
   }
    
   // set the token and user from the session storage
   export const setUserSession = (token, user) => {
-    localStorage.setItem('id_token', token)
+    // localStorage.setItem('id_token', token)
     sessionStorage.setItem('token', token);
     sessionStorage.setItem('user', JSON.stringify(user));
   }
