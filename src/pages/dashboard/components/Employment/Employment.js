@@ -17,6 +17,7 @@ import FormControl from '@material-ui/core/FormControl';
 
 //types
 import { getUserEmployments } from '../../../../api/getUserDetailsApi';
+import { postUserEmployment } from '../../../../api/postUserDetailsApi';
 import DateWithCalendarPicker from '../../../../components/DatePicker/DateWithCalendarPicker';
 import CheckBoxWithLabel from '../../../../components/CheckBoxes/CheckBoxWithLabel';
 
@@ -33,6 +34,7 @@ const Employment = ({ title, id, token }) => {
     "IDLE"
   );
   const [error, setError] = useState('');
+  const [postedData, setPostedData] = useState('');
   const [actionId, setActionId] = useState(0);
   const [userId, setUserId] = useState(0);
   const [open, setOpen] = useState(false);
@@ -114,9 +116,36 @@ const Employment = ({ title, id, token }) => {
       end_date: selectedEndDate,
       is_current: isCurrent,
     }
-    setOpen(false);
-  }
+    postUserEmployment(action, id, formData, token)
+      .then(data => {
+        setStatus("SUCCESS");
+        setPostedData('posted')
+        resetData()
+        setOpen(false);
 
+      })
+      .catch(error => {
+        console.log("error is in posting data effect", error)
+        setStatus("ERROR");
+      });
+  }
+  const resetData = () => {
+    setInstitutionName('')
+    setJobTitle('')
+    setEmploymentType('')
+    setInstitutionUrl('')
+    setInstitutionCity('')
+    setInstitutionCountry('')
+    setInstitutionSize('')
+    setWorkSummary('')
+    setAccomplishments('')
+    setIsCurrent('')
+    setSelectedStartDate('')
+    setSelectedEndDate('')
+    setActionId(0)
+    setIsCurrent(false)
+    setUserId(0)
+  }
 
   useEffect(() => {
     setStatus("LOADING");
@@ -130,7 +159,7 @@ const Employment = ({ title, id, token }) => {
         setStatus("ERROR");
         setError(error.message);
       });
-  }, []);
+  }, [postedData]);
   return (
     <Widget
       header={
@@ -138,7 +167,13 @@ const Employment = ({ title, id, token }) => {
           <div className={classes.title}>
             <Typography variant="h5">{title}</Typography>
           </div>
-          <div className={classes.addButton} onClick={handleClickOpen}>+ Add New</div>
+          <div className={classes.addButton} onClick={
+            () => {
+              setAction("Add");
+              resetData()
+              handleClickOpen()
+            }
+          }>+ Add New</div>
         </div>
 
       }

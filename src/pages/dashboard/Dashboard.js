@@ -91,7 +91,7 @@ export default function Dashboard(props) {
 
               <Summary
                 title="Profile Summary"
-
+                id={userInfo.id}
                 profile_summary={userSummary.profile_summary}
 
               />
@@ -151,4 +151,3 @@ export default function Dashboard(props) {
     </>
   );
 }
-

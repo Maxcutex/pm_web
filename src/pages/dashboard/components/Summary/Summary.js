@@ -15,13 +15,16 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+import { postUserSummary } from '../../../../api/postUserDetailsApi';
 
 
 
 
-const Summary = ({ title, profile_summary }) => {
+
+const Summary = ({ id, title, profile_summary }) => {
   var classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [profileSummary, setProfileSummary] = useState(profile_summary);
   const fullWidth = true;
   const maxWidth = 'md';
 
@@ -30,7 +33,18 @@ const Summary = ({ title, profile_summary }) => {
   };
 
   const handleClose = () => {
-    setOpen(false);
+    var formData = {
+      profile_summary: profileSummary,
+    }
+    console.log("this is profile summary", profileSummary)
+    postUserSummary(id, formData)
+      .then(data => {
+        setOpen(false);
+      })
+      .catch(error => {
+        console.log("error is in posting data effect", error)
+      });
+
   };
 
   return (
@@ -52,7 +66,7 @@ const Summary = ({ title, profile_summary }) => {
         <div>
 
           <div>
-            {profile_summary}
+            {profileSummary}
           </div>
           <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" maxWidth={maxWidth} fullWidth={fullWidth}>
             <DialogTitle id="form-dialog-title">Edit {title}</DialogTitle>
@@ -65,8 +79,8 @@ const Summary = ({ title, profile_summary }) => {
                 placeholder={profile_summary}
                 multiline
                 rows={4} fullWidth
-                rowsMax={9} value={profile_summary}
-              >{profile_summary}</TextField>
+                rowsMax={9} value={profileSummary} onChange={e => setProfileSummary(e.target.value)}
+              ></TextField>
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose} color="primary">
