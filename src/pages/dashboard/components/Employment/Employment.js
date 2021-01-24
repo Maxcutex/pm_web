@@ -23,7 +23,7 @@ import CheckBoxWithLabel from '../../../../components/CheckBoxes/CheckBoxWithLab
 
 
 
-const Employment = ({ title, id, token }) => {
+const Employment = ({ title, id }) => {
   var classes = useStyles();
   const [
     userEmployment,
@@ -38,10 +38,9 @@ const Employment = ({ title, id, token }) => {
   const [actionId, setActionId] = useState(0);
   const [userId, setUserId] = useState(0);
   const [open, setOpen] = useState(false);
-  const [tokenValue, setTokenValue] = useState(token);
   const [action, setAction] = useState("Add");
-  const [fullWidth, setFullWidth] = useState(true);
-  const [maxWidth, setMaxWidth] = useState('md');
+  const fullWidth = true;
+  const maxWidth = 'md';
   const [selectedStartDate, setSelectedStartDate] = React.useState(new Date('2004-01-18T21:11:54'));
   const [selectedEndDate, setSelectedEndDate] = React.useState(new Date('2021-01-18T21:11:54'));
   const [institutionName, setInstitutionName] = useState("");
@@ -116,7 +115,7 @@ const Employment = ({ title, id, token }) => {
       end_date: selectedEndDate,
       is_current: isCurrent,
     }
-    postUserEmployment(action, id, formData, token)
+    postUserEmployment(action, id, formData)
       .then(data => {
         setStatus("SUCCESS");
         setPostedData('posted')
@@ -149,7 +148,7 @@ const Employment = ({ title, id, token }) => {
 
   useEffect(() => {
     setStatus("LOADING");
-    getUserEmployments(id, token)
+    getUserEmployments(id)
       .then(data => {
         setUserEmployment(data.payload.user_employments);
         setStatus("SUCCESS");
@@ -224,8 +223,8 @@ const Employment = ({ title, id, token }) => {
 
                   </div>
                   <div className={classnames(classes.employ_actions)}>
-                    <div style={{ display: "flex" }} onClick={() => fetchEditData(employment.id)}><EditIcon /> <Typography className={classes.materialIconText}>Edit</Typography></div>
-                    <div style={{ display: "flex" }}><DeleteIcon /> <Typography className={classes.materialIconText}>Delete</Typography></div>
+                    <div className={classnames(classes.employ_actions_buttons)} onClick={() => fetchEditData(employment.id)}><EditIcon /> <Typography className={classes.materialIconText}>Edit</Typography></div>
+                    <div className={classnames(classes.employ_actions_buttons)} ><DeleteIcon /> <Typography className={classes.materialIconText}>Delete</Typography></div>
                   </div>
 
 

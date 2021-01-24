@@ -6,41 +6,59 @@ export default makeStyles(theme => ({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    width: "100%",
+    width: "8rem",
     marginBottom: theme.spacing(1),
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 180,
   },
   addButton: {
     color: "blue",
-    width: "7rem", 
-    marginTop: "0.3rem"
+    width: "7rem",
+    marginTop: "0.3rem",
+    "&:hover": {
+      cursor: "pointer",
+    }
+  },
+  formTextDiv: {
+    marginBottom: theme.spacing(1),
+    width: "45%",
+    marginRight: "1rem"
   },
   txtSubHeader: {
     fontSize: "14px",
     fontWeight: "700",
-    color: "#635c5c", 
+    color: "#635c5c",
     fontFamily: "Lato,BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif"
   },
   base_div: {
-      display: "block", 
-      float: "left",
+    display: "block",
+    float: "left",
   },
   employ_container: {
     "&::before": {
-        content: " ",
-        display: "inline-block",
-        position: "absolute",
-        borderRadius: "50%",
-        border: ".625rem solid #d5deff",
-        left: "0",
-        top: "1.0625rem",
-        width: "1.25rem",
-        height: "1.25rem",
-        zIndex: "400",
+      content: " ",
+      display: "inline-block",
+      position: "absolute",
+      borderRadius: "50%",
+      border: ".625rem solid #d5deff",
+      left: "0",
+      top: "1.0625rem",
+      width: "1.25rem",
+      height: "1.25rem",
+      zIndex: "400",
     }
   },
   employ_actions: {
     marginRight: "2rem",
     width: "10%",
+  },
+  employ_actions_buttons: {
+    display: "flex",
+    "&:hover": {
+      cursor: "pointer",
+    }
   },
   materialIconText: {
     marginLeft: theme.spacing(1),
@@ -66,25 +84,25 @@ export default makeStyles(theme => ({
   },
   employment_skill: {
     border: "1px solid #49aaaf",
-    padding: "4px", 
-    color: "#49aaaf", 
+    padding: "4px",
+    color: "#49aaaf",
     boxSizing: "none",
-    minWidth: "3rem", 
-    borderRadius: "5%",marginRight: "0.6rem"
+    minWidth: "3rem",
+    borderRadius: "5%", marginRight: "0.6rem"
   },
   institution_name: {
     color: "#3359db",
     fontSize: "18px",
   },
   institution_city_country: {
-      color: "#000",
-      fontSize: "14px",
+    color: "#000",
+    fontSize: "14px",
   },
   institution_period: {
     color: "#626a7d",
     fontSize: "12px",
   },
-  timeline_item_left:{
+  timeline_item_left: {
     float: "left",
     border: "1px solid #cecece",
     width: "35%",

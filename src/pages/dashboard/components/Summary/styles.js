@@ -11,8 +11,11 @@ export default makeStyles(theme => ({
   },
   addButton: {
     color: "blue",
-    width: "7rem", 
-    marginTop: "0.3rem"
+    width: "7rem",
+    marginTop: "0.3rem",
+    "&:hover": {
+      cursor: "pointer",
+    }
   },
   bottomStatsContainer: {
     display: "flex",

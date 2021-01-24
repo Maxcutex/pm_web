@@ -11,6 +11,11 @@ import {
   HelpOutline as FAQIcon,
   ArrowBack as ArrowBackIcon,
   AccessTime as SelfCheckInIcon,
+  RecentActors as UsersIcon,
+  Domain as ClientIcon,
+  Category as CategoryIcon,
+  Stars as SkillIcon,
+
 } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
@@ -33,6 +38,11 @@ import {
 const structure = [
   { id: 0, label: "Dashboard", link: "/app/dashboard", icon: <HomeIcon /> },
   { id: 15, label: "Self Check-ins", link: "/app/selfcheckin", icon: <SelfCheckInIcon /> },
+  { id: 16, label: "Users", link: "/app/users", icon: <UsersIcon /> },
+  { id: 17, label: "Clients", link: "/app/clients", icon: <ClientIcon /> },
+  { id: 18, label: "Category", link: "/app/categories", icon: <CategoryIcon /> },
+  { id: 19, label: "Skills", link: "/app/skills", icon: <SkillIcon /> },
+
   {
     id: 1,
     label: "Typography",
@@ -95,7 +105,7 @@ function Sidebar({ location }) {
   // local
   var [isPermanent, setPermanent] = useState(true);
 
-  useEffect(function() {
+  useEffect(function () {
     window.addEventListener("resize", handleWindowWidthChange);
     handleWindowWidthChange();
     return function cleanup() {

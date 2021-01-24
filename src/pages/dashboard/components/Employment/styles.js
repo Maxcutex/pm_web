@@ -16,7 +16,10 @@ export default makeStyles(theme => ({
   addButton: {
     color: "blue",
     width: "7rem",
-    marginTop: "0.3rem"
+    marginTop: "0.3rem",
+    "&:hover": {
+      cursor: "pointer",
+    }
   },
   formTextDiv: {
     marginBottom: theme.spacing(1),
@@ -50,6 +53,12 @@ export default makeStyles(theme => ({
   employ_actions: {
     marginRight: "2rem",
     width: "10%",
+  },
+  employ_actions_buttons: {
+    display: "flex",
+    "&:hover": {
+      cursor: "pointer",
+    }
   },
   materialIconText: {
     marginLeft: theme.spacing(1),

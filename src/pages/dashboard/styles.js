@@ -1,11 +1,13 @@
 import { makeStyles } from "@material-ui/styles";
 
 export default makeStyles(theme => ({
-  main_header: {backgroundColor: "#fff", marginLeft: "-24px",
-  marginTop: "-24px", marginRight: "-24px", padding: "0.5rem", marginBottom: "15px", paddingLeft: "26px", paddingTop: "1.5rem", paddingBottom:"1.5rem"},
+  main_header: {
+    backgroundColor: "#fff", marginLeft: "-24px",
+    marginTop: "-24px", marginRight: "-24px", padding: "0.5rem", marginBottom: "15px", paddingLeft: "26px", paddingTop: "1.5rem", paddingBottom: "1.5rem"
+  },
   image: {
     paddingLeft: "0.3rem",
-    width: "8rem", 
+    width: "8rem",
     marginRight: "1rem"
   },
   main_description: {
@@ -37,14 +39,17 @@ export default makeStyles(theme => ({
     borderRadius: "3px",
     textDecoration: "none",
     transition: ".3333333333s",
+    "&:hover": {
+      cursor: "pointer",
+    }
   },
   buttonEditIcon: {
-    padding: "0.1rem", 
-    border: "0.1rem solid #cecece", 
+    padding: "0.1rem",
+    border: "0.1rem solid #cecece",
     "&:hover": {
-      cursor:"pointer"
+      cursor: "pointer"
     },
-    
+
     width: "2.1rem",
     borderRadius: "0.3rem",
     textAlign: "center",

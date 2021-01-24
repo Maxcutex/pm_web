@@ -3,7 +3,8 @@ import {
   Drawer,
   IconButton,
   List,
-  withStyles } from "@material-ui/core";
+  withStyles
+} from "@material-ui/core";
 import {
   Home as HomeIcon,
   NotificationsNone as NotificationsIcon,
@@ -14,6 +15,7 @@ import {
   LibraryBooks as LibraryIcon,
   HelpOutline as FAQIcon,
   ArrowBack as ArrowBackIcon,
+  RecentActors as UsersIcon,
 } from "@material-ui/icons";
 import classNames from 'classnames';
 
@@ -23,9 +25,13 @@ import Dot from './components/Dot';
 const structure = [
   { id: 0, label: 'Dashboard', link: '/app/dashboard', icon: <HomeIcon /> },
   { id: 15, label: "Self Check-ins", link: "/app/selfcheckin", icon: <SelfCheckInIcon /> },
+  { id: 16, label: "Manage Users", link: "/app/selfcheckin", icon: <UsersIcon /> },
+  { id: 17, label: "Manage Clients", link: "/app/selfcheckin", icon: <ClientIcon /> },
+  { id: 18, label: "Manage Skill Category", link: "/app/selfcheckin", icon: <CategoryIcon /> },
+  { id: 19, label: "Manage Skills", link: "/app/selfcheckin", icon: <SkillIcon /> },
   { id: 1, label: 'Typography', link: '/app/typography', icon: <TypographyIcon /> },
   { id: 2, label: 'Tables', link: '/app/tables', icon: <TableIcon /> },
-  { id: 3, label: 'Notifications', link: '/app/notifications', icon: <NotificationsIcon />},
+  { id: 3, label: 'Notifications', link: '/app/notifications', icon: <NotificationsIcon /> },
   {
     id: 4,
     label: 'UI Elements',
@@ -41,7 +47,7 @@ const structure = [
   { id: 6, type: 'title', label: 'HELP' },
   { id: 7, label: 'Library', link: '', icon: <LibraryIcon /> },
   { id: 8, label: 'Support', link: '', icon: <SupportIcon /> },
-  { id: 9, label: 'FAQ', link: '', icon: <FAQIcon />},
+  { id: 9, label: 'FAQ', link: '', icon: <FAQIcon /> },
   { id: 10, type: 'divider' },
   { id: 11, type: 'title', label: 'PROJECTS' },
   { id: 12, label: 'My recent', link: '', icon: <Dot size="small" color="secondary" /> },

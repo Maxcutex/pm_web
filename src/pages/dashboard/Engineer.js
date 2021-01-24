@@ -15,25 +15,23 @@ import Summary from "./components/Summary/Summary"
 import Employment from "./components/Employment/Employment"
 import Education from "./components/Education/Education"
 import { getToken } from "../../utils/common";
-import decodeToken from "../../utils/jwtDecode";
 
 //api
 import { getUserProfile } from '../../api/getUserDetailsApi';
 import Banner from "./components/Banner/Banner";
 
-export default function Dashboard(props) {
+const Engineer = ({ props }) => {
   var classes = useStyles();
   // get current user details
   var token = getToken()
-  var userInfo = decodeToken(token);
   // local
   const [userSummary, setUserSummary,] = useState(null);
   const [status, setStatus] = useState("IDLE");
   const [error, setError] = useState('');
-
+  const id = props.match.params.id;
   useEffect(() => {
     setStatus("LOADING");
-    getUserProfile(userInfo.id, token)
+    getUserProfile(id, token)
       .then(data => {
         setUserSummary(data.payload.user);
         setStatus("SUCCESS");
@@ -58,7 +56,9 @@ export default function Dashboard(props) {
 
         {status === "SUCCESS" && userSummary !== null
           ? (
-            <Banner userSummary={userSummary}
+            <Banner first_name={userSummary.first_name} last_name={userSummary.last_name} job_title={userSummary.job_title} experience_years={userSummary.experience_years}
+              employment_date_formatted={userSummary.employment_date_formatted}
+              email={userSummary.email} personal_email={userSummary.personal_email} phone={userSummary.phone} image_url={userSummary.image_url}
               isOwner={false}
             />
           )
@@ -80,7 +80,7 @@ export default function Dashboard(props) {
 
               <Summary
                 title="Profile Summary"
-                id={userInfo.id}
+                id={id}
                 profile_summary={userSummary.profile_summary}
                 isOwner={false}
 
@@ -107,14 +107,14 @@ export default function Dashboard(props) {
 
         <Grid item xs={12}>
           <Employment title="Work History"
-            id={userInfo.id} isOwner={false}
+            id={id} isOwner={false}
             token={token} />
 
         </Grid>
         <Grid item xs={12}>
 
           <Education title="Education"
-            id={userInfo.id} isOwner={false}
+            id={id} isOwner={false}
             token={token} />
         </Grid>
         <Grid item xs={6}>
@@ -141,3 +141,5 @@ export default function Dashboard(props) {
     </>
   );
 }
+
+export default Engineer;

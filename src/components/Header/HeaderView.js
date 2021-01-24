@@ -96,14 +96,14 @@ const Header = ({ classes, isSidebarOpened, toggleSidebar, ...props }) => (
             }}
           />
         ) : (
-          <MenuIcon
-            classes={{
-              root: classNames(classes.headerIcon, classes.headerIconCollapse)
-            }}
-          />
-        )}
+            <MenuIcon
+              classes={{
+                root: classNames(classes.headerIcon, classes.headerIconCollapse)
+              }}
+            />
+          )}
       </IconButton>
-      <Typography variant="h6" weight="medium" className={classes.logotype}>React Material Admin</Typography>
+      <Typography variant="h6" weight="medium" className={classes.logotype}>Webspoons PM</Typography>
       <div className={classes.grow} />
       <div
         className={classNames(classes.search, {
