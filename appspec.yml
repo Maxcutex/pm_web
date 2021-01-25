@@ -6,8 +6,10 @@ files:
 hooks:
   AfterInstall:
     - location: install_dependencies
-      timeout: 30
+      timeout: 300
+      runas: ubuntu
   ApplicationStart:
     - location: scripts/start_app
       timeout: 300
+      runas: ubuntu
       
