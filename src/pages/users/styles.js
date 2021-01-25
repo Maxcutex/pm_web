@@ -18,6 +18,9 @@ export default makeStyles(theme => ({
   tableOverflow: {
     overflow: 'auto'
   },
+  hrDivider: { color: "#efefef" },
+  searchHeaderTitle: { fontSize: "1rem", color: "#429662", fontWeight: "800" },
+  searchHeaderLink: { marginLeft: "auto", cursor: "pointer", fontWeight: "500" },
   btnSuccess: {
     backgroundColor: "#00a65a",
     borderColor: "#008d4c",

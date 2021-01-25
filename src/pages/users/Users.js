@@ -9,7 +9,6 @@ import UsersTable from "./UsersTable";
 
 //api
 import { getAllUsers } from '../../api/getUserDetailsApi';
-import { getToken } from "../../utils/common";
 // styles
 import useStyles from "./styles";
 import SimpleSearch from "./components/SimpleSearch/SimpleSearch";
@@ -25,10 +24,14 @@ export default function Users() {
   const [error, setError] = useState('');
   const [users, setUsers] = useState(null);
   const [searchType, setSearchType] = useState('Simple');
-  var token = getToken();
+  const handleSearchShow = (search) => {
+    console.log("search type bout to be")
+    setSearchType(search)
+    console.log("search type has been set;")
+  };
   useEffect(() => {
     setStatus("LOADING");
-    getAllUsers(token)
+    getAllUsers()
       .then(data => {
         setUsers(data.payload.users);
         setStatus("SUCCESS");
@@ -48,11 +51,11 @@ export default function Users() {
           </div>
         </div>
         <div className={classes.search_form}>
-          <div>Use simple search or Advanced Search</div>
+
           {searchType == 'Simple' ? (
-            <SimpleSearch />
+            <SimpleSearch handleSearchShow={handleSearchShow} />
           ) : (
-              <AdvancedSearch />
+              <AdvancedSearch handleSearchShow={handleSearchShow} />
             )}
 
         </div>

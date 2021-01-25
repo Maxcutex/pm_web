@@ -20,6 +20,7 @@ import decodeToken from "../../utils/jwtDecode";
 //api
 import { getUserProfile } from '../../api/getUserDetailsApi';
 import Banner from "./components/Banner/Banner";
+import Skills from "./components/Skills/Skills";
 
 export default function Dashboard(props) {
   var classes = useStyles();
@@ -33,7 +34,7 @@ export default function Dashboard(props) {
 
   useEffect(() => {
     setStatus("LOADING");
-    getUserProfile(userInfo.id, token)
+    getUserProfile(userInfo.id)
       .then(data => {
         setUserSummary(data.payload.user);
         setStatus("SUCCESS");
@@ -95,14 +96,7 @@ export default function Dashboard(props) {
         </Grid>
 
         <Grid item xs={12}>
-          <Widget
-            title="Professional Skills Overview"
-            upperTitle
-            bodyClass={classes.fullHeightBody}
-            className={classes.card} disableWidgetMenu={true}
-          >
-
-          </Widget>
+          <Skills id={userInfo.id} isOwner={false} />
         </Grid>
 
         <Grid item xs={12}>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useStyles from '../../styles'
 import { Edit as EditIcon } from "@material-ui/icons";
 import classnames from "classnames";
+import ProfileImage from './ProfileImage'
 
 
 import {
@@ -44,6 +45,7 @@ const Banner = ({ userSummary }) => {
       experience_years: experienceYears,
       phone: phone,
       personal_email: personalEmail,
+      user_id: id,
       git_hub: git,
       linked_in: linkedIn,
     }
@@ -63,12 +65,12 @@ const Banner = ({ userSummary }) => {
   return (<div>
     <div style={{ display: "flex" }}>
       <div className={classes.image}>
-        picture
-                        </div>
+        <ProfileImage />
+      </div>
       <div className={classes.main_description}>
         <div className={classes.main_description_name}>{firstName} {lastName}</div>
-        <div className={classes.main_description_position}>{jobTitle} .{experienceYears} yrs engineering experience . Started on {userSummary.employment_date_formatted} </div>
-        <div className={classes.main_description_contacts}><i>Primary Email: {userSummary.email}. Personal Email: {personalEmail}. Phone: {phone} </i></div>
+        <div className={classes.main_description_position}>{jobTitle} <span className={classes.dot}>.</span>{experienceYears} yrs engineering experience <span className={classes.dot}>.</span> Started on {userSummary.employment_date_formatted} </div>
+        <div className={classes.main_description_contacts}><i>Primary Email: {userSummary.email}<span className={classes.dot2}>.</span> Personal Email: {personalEmail}<span className={classes.dot2}>.</span> Phone: {phone} </i></div>
         <div>Social Link Logos</div>
       </div>
       <div className={classes.buttonEdit}>
@@ -86,7 +88,7 @@ const Banner = ({ userSummary }) => {
             <TextField
               id="firstName"
               label="First Name" fullWidth required
-              value={firstName} onChange={setFirstName}
+              value={firstName} onChange={e => setFirstName(e.target.value)}
             />
 
           </div>
@@ -94,7 +96,7 @@ const Banner = ({ userSummary }) => {
             <TextField
               id="lastName"
               label="Last Name" fullWidth required
-              value={lastName} onChange={setLastName}
+              value={lastName} onChange={e => setLastName(e.target.value)}
             />
           </div>
         </div>
@@ -104,7 +106,7 @@ const Banner = ({ userSummary }) => {
             <TextField
               id="jobTitle"
               label="Job Title" fullWidth required
-              value={jobTitle} onChange={setJobTitle}
+              value={jobTitle} onChange={e => setJobTitle(e.target.value)}
             />
 
           </div>
@@ -112,7 +114,7 @@ const Banner = ({ userSummary }) => {
             <TextField
               id="expYears"
               label="Yrs Experience" fullWidth required
-              value={experienceYears} onChange={setExperienceYears}
+              value={experienceYears} onChange={e => setExperienceYears(e.target.value)}
             />
 
           </div>
@@ -123,7 +125,7 @@ const Banner = ({ userSummary }) => {
             <TextField
               id="personalEmail"
               label="Personal Email" fullWidth required
-              value={personalEmail} onChange={setPersonalEmail}
+              value={personalEmail} onChange={e => setPersonalEmail(e.target.value)}
             />
 
           </div>
@@ -131,7 +133,7 @@ const Banner = ({ userSummary }) => {
             <TextField
               id="phone"
               label="Phone" fullWidth required
-              value={phone} onChange={setPhone}
+              value={phone} onChange={e => setPhone(e.target.value)}
             />
           </div>
         </div>
@@ -141,7 +143,7 @@ const Banner = ({ userSummary }) => {
             <TextField
               id="git"
               label="Git" fullWidth required
-              value={git} onChange={setGit}
+              value={git} onChange={e => setGit(e.target.value)}
             />
 
           </div>
@@ -149,7 +151,7 @@ const Banner = ({ userSummary }) => {
             <TextField
               id="linkedIn"
               label="Linked In" fullWidth required
-              value={linkedIn} onChange={setLinkedIn}
+              value={linkedIn} onChange={e => setLinkedIn(e.target.value)}
             />
           </div>
         </div>

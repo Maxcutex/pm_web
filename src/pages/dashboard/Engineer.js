@@ -31,7 +31,7 @@ const Engineer = ({ props }) => {
   const id = props.match.params.id;
   useEffect(() => {
     setStatus("LOADING");
-    getUserProfile(id, token)
+    getUserProfile(id)
       .then(data => {
         setUserSummary(data.payload.user);
         setStatus("SUCCESS");

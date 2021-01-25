@@ -6,14 +6,16 @@ import useStyles from "../../styles";
 import { Search as SearchIcon } from '@material-ui/icons';
 import classnames from "classnames";
 
-const AdvancedSearch = () => {
+const AdvancedSearch = ({ handleSearchShow }) => {
   const classes = useStyles();
   const [nameEmail, setNameEmail] = useState('');
 
   return (<div>
     <div style={{ display: "flex" }}>
-      <div>[Advanced Search]</div>
-      <div>Go to Simple</div>
+      <div className={classnames(classes.searchHeaderTitle)}>Advanced Search</div>
+      <div className={classnames(classes.searchHeaderLink)} onClick={() => {
+        handleSearchShow("Simple");
+      }}>Go to Simple</div>
     </div>
     <hr />
     <div style={{ display: "flex" }}>

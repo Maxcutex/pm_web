@@ -1,8 +1,11 @@
 import axios from 'axios'
-
+import { getToken } from "../utils/common";
 import { config } from '../config/index';
 export const baseUrl = config.PM_API_BASE_URL;
-export const getAllUsers = async (token) => {
+var token = getToken()
+
+
+export const getAllUsers = async () => {
   try {
     const url = `${baseUrl}/api/v1/users/`
     axios.defaults.headers.Authorization = `Bearer ${token}`;
@@ -21,7 +24,7 @@ export const getAllUsers = async (token) => {
   }
 }
 
-export const getUserProfile = async (id, token) => {
+export const getUserProfile = async (id) => {
   try {
     const url = `${baseUrl}/api/v1/users/${id}/`
     axios.defaults.headers.Authorization = `Bearer ${token}`;
@@ -40,9 +43,9 @@ export const getUserProfile = async (id, token) => {
   }
 }
 
-export const getUserSkills = async (id, token) => {
+export const getUserSkills = async (id) => {
   try {
-    const url = `${baseUrl}/api/v1/user_skill/${id}/`
+    const url = `${baseUrl}/api/v1/user_skill/user/${id}`
     axios.defaults.headers.Authorization = `Bearer ${token}`;
     const { data } = await axios.get(url, {
       headers: {
@@ -57,7 +60,7 @@ export const getUserSkills = async (id, token) => {
   }
 }
 
-export const getUserSkill = async (id, token) => {
+export const getUserSkill = async (id) => {
   try {
     const url = `${baseUrl}/api/v1/user_skill/user-single/${id}`
     axios.defaults.headers.Authorization = `Bearer ${token}`;
@@ -74,7 +77,7 @@ export const getUserSkill = async (id, token) => {
   }
 }
 
-export const getUserEmployments = async (id, token) => {
+export const getUserEmployments = async (id) => {
   try {
     const url = `${baseUrl}/api/v1/user_employment_history/user/${id}`
     axios.defaults.headers.Authorization = `Bearer ${token}`;
@@ -91,7 +94,7 @@ export const getUserEmployments = async (id, token) => {
   }
 }
 
-export const getUserEmployment = async (id, token) => {
+export const getUserEmployment = async (id) => {
   try {
     const url = `${baseUrl}/api/v1/user_employment_history/user-single/${id}`
     axios.defaults.headers.Authorization = `Bearer ${token}`;
@@ -108,7 +111,7 @@ export const getUserEmployment = async (id, token) => {
   }
 }
 
-export const getUserProjects = async (id, token) => {
+export const getUserProjects = async (id) => {
   try {
     const url = `${baseUrl}/api/v1/user_project/${id}`
     axios.defaults.headers.Authorization = `Bearer ${token}`;
@@ -125,7 +128,7 @@ export const getUserProjects = async (id, token) => {
   }
 }
 
-export const getUserProject = async (id, token) => {
+export const getUserProject = async (id) => {
   try {
     const url = `${baseUrl}/api/v1/user_project/user-single/${id}`
     axios.defaults.headers.Authorization = `Bearer ${token}`;
@@ -142,7 +145,7 @@ export const getUserProject = async (id, token) => {
   }
 }
 
-export const getUserEducations = async (id, token) => {
+export const getUserEducations = async (id) => {
   try {
     const url = `${baseUrl}/api/v1/user_education/user/${id}`
     axios.defaults.headers.Authorization = `Bearer ${token}`;
@@ -160,7 +163,7 @@ export const getUserEducations = async (id, token) => {
 }
 
 
-export const getUserEducation = async (id, token) => {
+export const getUserEducation = async (id) => {
   try {
     const url = `${baseUrl}/api/v1/user_education/user-single/${id}`
     axios.defaults.headers.Authorization = `Bearer ${token}`;
@@ -177,7 +180,7 @@ export const getUserEducation = async (id, token) => {
   }
 }
 
-export const getUserHobbies = async (id, token) => {
+export const getUserHobbies = async (id) => {
   try {
     const url = `${baseUrl}/api/v1/user_hobby/${id}/`
     axios.defaults.headers.Authorization = `Bearer ${token}`;

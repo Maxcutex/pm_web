@@ -26,6 +26,17 @@ export default makeStyles(theme => ({
   main_description_contacts: {
   },
   buttonEdit: {},
+  formTextDiv: {
+    marginBottom: theme.spacing(1),
+    width: "48%",
+    marginRight: "2rem"
+  },
+  dot: {
+    fontSize: "5rem", lineHeight: "0.01rem"
+  },
+  dot2: {
+    fontSize: "3rem", lineHeight: "0.01rem"
+  },
   buttonEditIcon2: {
     backgroundColor: "#fff",
     border: ".0625rem solid #bfc5d2",
