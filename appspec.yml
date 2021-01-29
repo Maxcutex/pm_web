@@ -7,9 +7,9 @@ hooks:
   AfterInstall:
     - location: scripts/install_dependencies
       timeout: 300
-      # runas: ubuntu
+      runas: ubuntu
   ApplicationStart:
     - location: scripts/start_app
       timeout: 300
-      # runas: ubuntu
+      runas: ubuntu
       
