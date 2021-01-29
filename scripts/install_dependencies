@@ -1,1 +1,2 @@
+cd /var/www/html/pm-web
 yarn install
