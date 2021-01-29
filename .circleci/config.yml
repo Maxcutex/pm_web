@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   aws-code-deploy: circleci/aws-code-deploy@1.0.1
+  # aws-s3: circleci/aws-s3@1.0.11
 jobs:
   build:
     docker:
@@ -23,6 +24,16 @@ jobs:
       - run: 
           name: run tests
           command: yarn test
+      # - run: yarn build
+
+      # - aws-s3/sync:
+      #     from: build
+      #     to: "s3://cra-ci-demo/"
+      #     arguments: |
+      #       --acl public-read \
+      #       --cache-control "max-age=86400"
+      #     overwrite: true
+      
   # deploy:
   #   docker:
   #     - image: cimg/node:15.5.1
@@ -70,8 +81,8 @@ workflows:
           bundle-key: pmS3BucketKey
           deployment-group: pm-web-deployment-group
           service-role-arn: arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole
-          # requires:
-          #   - build
+          requires:
+            - build
           # filters:
           #   branches:
           #     only:
