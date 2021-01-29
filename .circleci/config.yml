@@ -81,8 +81,8 @@ workflows:
           bundle-key: pmS3BucketKey
           deployment-group: pm-web-deployment-group
           service-role-arn: arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole
-          requires:
-            - build
+          # requires:
+          #   - build
           # filters:
           #   branches:
           #     only:
