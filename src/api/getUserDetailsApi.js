@@ -195,4 +195,37 @@ export const getUserHobbies = async (id) => {
       error.message || `Oops! That's awkward. We messed up.`
     )
   }
-} 
+}
+
+export const getSkills = async (id) => {
+  try {
+    const url = `${baseUrl}/api/v1/skills/`
+    axios.defaults.headers.Authorization = `Bearer ${token}`;
+    const { data } = await axios.get(url, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    return data
+  } catch (error) {
+    throw new Error(
+      error.message || `Oops! That's awkward. We messed up.`
+    )
+  }
+}
+
+export const getCheckEmail = async (email) => {
+  try {
+    var url = `${baseUrl}/api/v1/users/check_email_exists?email=${email}`
+    const { data } = await axios.get(url, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    return data
+  } catch (error) {
+    throw new Error(
+      error.message || `Oops! That's awkward. We messed up.`
+    )
+  }
+}

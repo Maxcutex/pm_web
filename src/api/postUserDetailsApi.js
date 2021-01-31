@@ -96,3 +96,54 @@ export const postUserInfo = async (id, form_data) => {
     )
   }
 }
+
+export const postUserSkill = async (action, id, form_data) => {
+  try {
+    var url = "";
+    var method = "";
+    if (action === "Add") {
+      method = "post";
+      url = `${baseUrl}/api/v1/user_skill/`
+    } else {
+      method = "put";
+      url = `${baseUrl}/api/v1/user_skill/${id}`
+    }
+    const { data } = await axios({
+      method: method,
+      url: url,
+      data: form_data,
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
+    });
+    return data
+  } catch (error) {
+    throw new Error(
+      error.message || `Oops! That's awkward. We messed up.`
+    )
+  }
+}
+
+export const postUserProfile = async (action, id, form_data) => {
+  try {
+    var url = "";
+    var method = "";
+    if (action === "Add") {
+      method = "post";
+      url = `${baseUrl}/api/v1/users/register/`
+    } else {
+      method = "put";
+      url = `${baseUrl}/api/v1/users/${id}`
+    }
+    const { data } = await axios({
+      method: method,
+      url: url,
+      data: form_data,
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
+    });
+    return data
+  } catch (error) {
+    throw new Error(
+      error.message || `Oops! That's awkward. We messed up.`
+    )
+  }
+}
+

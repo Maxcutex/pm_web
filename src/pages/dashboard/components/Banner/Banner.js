@@ -69,7 +69,7 @@ const Banner = ({ userSummary }) => {
       </div>
       <div className={classes.main_description}>
         <div className={classes.main_description_name}>{firstName} {lastName}</div>
-        <div className={classes.main_description_position}>{jobTitle} <span className={classes.dot}>.</span>{experienceYears} yrs engineering experience <span className={classes.dot}>.</span> Started on {userSummary.employment_date_formatted} </div>
+        <div className={classes.main_description_position}>{jobTitle} <span className={classes.dot}>.</span>{experienceYears} yrs engineering experience <span className={classes.dot}>.</span> Started with Webspoons on {userSummary.employment_date_formatted} </div>
         <div className={classes.main_description_contacts}><i>Primary Email: {userSummary.email}<span className={classes.dot2}>.</span> Personal Email: {personalEmail}<span className={classes.dot2}>.</span> Phone: {phone} </i></div>
         <div>Social Link Logos</div>
       </div>

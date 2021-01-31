@@ -11,10 +11,22 @@ export default makeStyles(theme => ({
     width: "20rem",
     marginBottom: theme.spacing(1),
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 180,
+  },
   formTextDiv: {
     marginBottom: theme.spacing(1),
     width: "45%",
     marginRight: "1rem"
+  },
+  addButton: {
+    color: "blue",
+    width: "7rem",
+    marginTop: "0.3rem",
+    "&:hover": {
+      cursor: "pointer",
+    }
   },
   skillsBadge: {
     padding: ".7125rem .775rem .8rem .775rem",

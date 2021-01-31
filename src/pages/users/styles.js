@@ -14,9 +14,25 @@ export default makeStyles(theme => ({
     padding: "0.4rem",
     borderRadius: "4px",
     border: "1px solid #e3e3e3"
+  }, formControl: {
+    margin: theme.spacing(1),
+    minWidth: 180,
   },
   tableOverflow: {
     overflow: 'auto'
+  },
+  errorMessage: {
+    textAlign: "left",
+    color: "#dd4646",
+  },
+  successMessage: {
+    textAlign: "left",
+    color: "#57bf70",
+  },
+  formTextDiv: {
+    marginBottom: theme.spacing(1),
+    width: "45%",
+    marginRight: "1rem"
   },
   hrDivider: { color: "#efefef" },
   searchHeaderTitle: { fontSize: "1rem", color: "#429662", fontWeight: "800" },

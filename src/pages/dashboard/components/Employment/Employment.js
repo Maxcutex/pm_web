@@ -36,7 +36,7 @@ const Employment = ({ title, id }) => {
   const [error, setError] = useState('');
   const [postedData, setPostedData] = useState('');
   const [actionId, setActionId] = useState(0);
-  const [userId, setUserId] = useState(0);
+  const [userId, setUserId] = useState(id);
   const [open, setOpen] = useState(false);
   const [action, setAction] = useState("Add");
   const fullWidth = true;

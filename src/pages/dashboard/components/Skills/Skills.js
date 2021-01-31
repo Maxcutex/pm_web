@@ -9,12 +9,12 @@ import Widget from "../../../../components/Widget/Widget";
 import { Typography } from "../../../../components/Wrappers/Wrappers";
 import {
   TextField, Select, Dialog, DialogActions,
-  DialogContent, DialogContentText, DialogTitle, Button, InputLabel, FormControl
+  DialogContent, DialogTitle, Button, InputLabel, FormControl
 } from '@material-ui/core';
-
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import { postUserSkill } from '../../../../api/postUserDetailsApi';
-import { getUserSkills } from '../../../../api/getUserDetailsApi';
+import { getUserSkills, getSkills } from '../../../../api/getUserDetailsApi';
 
 const Skills = ({ id }) => {
   var classes = useStyles();
@@ -26,8 +26,11 @@ const Skills = ({ id }) => {
     "IDLE"
   );
   const [error, setError] = useState('');
+  const [userId, setUserId] = useState(id);
   const [skillId, setSkillId] = useState("");
   const [postedData, setPostedData] = useState("");
+  const [skills, setSkills] = useState(null);
+  const [skill, setSkill] = useState(null);
   const [skillName, setSkillName] = useState("");
   const [skillLevel, setSkillLevel] = useState("");
   const [experienceYears, setExperienceYears] = useState(0);
@@ -55,10 +58,40 @@ const Skills = ({ id }) => {
     handleClickOpen();
   }
 
+  const postSkill = (action, id) => {
+    var formData = {
+      user_id: userId,
+      skill_id: skill,
+      skill_level: skillLevel,
+      years: experienceYears,
+    }
+    postUserSkill(action, id, formData)
+      .then(data => {
+        setStatus("SUCCESS");
+        setPostedData('posted')
+        resetData()
+        setOpen(false);
+
+      })
+      .catch(error => {
+        console.log("error is in posting data effect", error)
+        setStatus("ERROR");
+      });
+  }
+
   const resetData = () => {
     setSkillName('')
     setSkillLevel("")
     setExperienceYears("")
+  }
+  const getListOfSkills = () => {
+    getSkills()
+      .then(data => {
+        setSkills(data.payload.skills);
+      })
+      .catch(error => {
+        setError(error.message);
+      });
   }
   useEffect(() => {
     setStatus("LOADING");
@@ -66,6 +99,7 @@ const Skills = ({ id }) => {
       .then(data => {
         setUserSkills(data.payload.user_skills);
         setStatus("SUCCESS");
+        getListOfSkills();
       })
       .catch(error => {
         console.log("error is in use effect", error)
@@ -108,7 +142,7 @@ const Skills = ({ id }) => {
 
           {status === "SUCCESS" && userSkills !== null
             ? (
-              <div style={{ display: "flex" }}>
+              <div style={{ display: "flex", flexWrap: "wrap" }}>
                 {userSkills.map((skill) => (
                   <div className={classes.skillsBadge} onClick={() => fetchEditData(skill.id)}>
                     <div>
@@ -125,11 +159,34 @@ const Skills = ({ id }) => {
             <DialogTitle id="form-dialog-title">{
               action == "Add" ? "Add Skill" : skillName}</DialogTitle>
             <DialogContent>
-              <div style={{ display: "flex" }}>
-                <div className={classnames(classes.formTextDiv)}>
+              {action === "Add" ? (
+                <div style={{ display: "flex" }}>
+                  <div className={classnames(classes.formTextDiv)}>
+                    <FormControl className={classes.formControl}>
+                      <InputLabel id="skill-label">Skill</InputLabel>
+                      <Select
+                        labelId="skill-label"
+                        id="skill" fullWidth
+                        value={skill}
+                        onChange={e => setSkill(e.target.value)}
+                      >
+                        <option selected aria-label="None" value="" />
+                        {
+                          skills !== null ? (
+                            skills.map((skill) => (
 
+                              <option value={skill.id}>{skill.name}</option>
+
+                            ))
+                          ) : null
+                        }
+
+                      </Select>
+                    </FormControl>
+                  </div>
                 </div>
-              </div>
+              ) : null}
+
               <div style={{ display: "flex" }}>
                 <div className={classnames(classes.formTextDiv)}>
                   <FormControl className={classes.formControl}>
@@ -161,13 +218,31 @@ const Skills = ({ id }) => {
             <DialogActions>
               <Button onClick={handleClose} color="primary">
                 Cancel
-                            </Button>
-              <Button onClick={handleClose} color="primary">
-                Update
-                            </Button>
-              <Button onClick={handleClose} color="primary">
-                Delete
-                            </Button>
+              </Button>
+              {action === "Add" ?
+                (
+                  <Button onClick={() => {
+                    postSkill(action, 0)
+                  }} color="primary">
+                    Add
+                  </Button>) : (
+                  <div>
+                    <Button onClick={() => {
+                      postSkill(action, skillId)
+                    }} color="primary">
+                      Update
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      className={classes.button}
+                      startIcon={<DeleteIcon />} >
+                      Delete
+                    </Button>
+                  </div>)
+              }
+
+
             </DialogActions>
           </Dialog>
 
