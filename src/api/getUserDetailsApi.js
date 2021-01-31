@@ -26,7 +26,7 @@ export const getAllUsers = async () => {
 
 export const getUserProfile = async (id) => {
   try {
-    const url = `${baseUrl}/api/v1/users/${id}/`
+    const url = `${baseUrl}/api/v1/users/user_profile/${id}`
     axios.defaults.headers.Authorization = `Bearer ${token}`;
     const { data } = await axios.get(url, {
       headers: {

@@ -144,7 +144,7 @@ const Skills = ({ id }) => {
             ? (
               <div style={{ display: "flex", flexWrap: "wrap" }}>
                 {userSkills.map((skill) => (
-                  <div className={classes.skillsBadge} onClick={() => fetchEditData(skill.id)}>
+                  <div key={skill.id} className={classes.skillsBadge} onClick={() => fetchEditData(skill.id)}>
                     <div>
                       <h5 className={classes.skillsBadgeSkillName}>{skill.name}</h5>
                     </div>
@@ -175,7 +175,7 @@ const Skills = ({ id }) => {
                           skills !== null ? (
                             skills.map((skill) => (
 
-                              <option value={skill.id}>{skill.name}</option>
+                              <option key={skill.id} value={skill.id}>{skill.name}</option>
 
                             ))
                           ) : null
