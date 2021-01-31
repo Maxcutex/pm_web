@@ -1,0 +1,2 @@
+cd /var/www/html/pm-web
+/home/ubuntu/.yarn/bin/yarn install
