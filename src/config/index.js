@@ -6,12 +6,12 @@ const allConfig = {
 
     production: {
         BASE_URL: 'https://stockman-app.herokuapp.com',
-        PM_API_BASE_URL: 'http://ec2-54-160-210-17.compute-1.amazonaws.com:5000/',
+        PM_API_BASE_URL: 'http://ec2-54-160-210-17.compute-1.amazonaws.com:5000',
     },
 
     staging: {
         BASE_URL: 'https://staging-stockman-app.herokuapp.com',
-        PM_API_BASE_URL: 'http://ec2-54-160-210-17.compute-1.amazonaws.com:5000/',
+        PM_API_BASE_URL: 'http://ec2-54-160-210-17.compute-1.amazonaws.com:5000',
     },
 
     test: {
