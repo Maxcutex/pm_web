@@ -3,13 +3,13 @@ os: linux
 files:
   - source: /
     destination: /var/www/html/pm-web
-hooks:
-  AfterInstall:
-    - location: scripts/install_dependencies
-      timeout: 600
-      runas: ubuntu
-  ApplicationStart:
-    - location: scripts/start_app
-      timeout: 600
-      runas: ubuntu
+# hooks:
+#   AfterInstall:
+#     - location: scripts/install_dependencies
+#       timeout: 600
+#       runas: ubuntu
+#   ApplicationStart:
+#     - location: scripts/start_app
+#       timeout: 600
+#       runas: ubuntu
       
