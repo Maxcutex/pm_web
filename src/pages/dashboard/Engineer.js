@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import {
   Grid,
 
@@ -15,20 +16,25 @@ import Summary from "./components/Summary/Summary"
 import Employment from "./components/Employment/Employment"
 import Education from "./components/Education/Education"
 import { getToken } from "../../utils/common";
+import decodeToken from "../../utils/jwtDecode";
 
 //api
 import { getUserProfile } from '../../api/getUserDetailsApi';
 import Banner from "./components/Banner/Banner";
+import Skills from "./components/Skills/Skills";
 
-const Engineer = ({ props }) => {
+export default function Dashboard(props) {
   var classes = useStyles();
   // get current user details
   var token = getToken()
+  var userInfo = decodeToken(token);
+  let { id } = useParams();
+  console.log("id of user is ", id)
   // local
   const [userSummary, setUserSummary,] = useState(null);
   const [status, setStatus] = useState("IDLE");
   const [error, setError] = useState('');
-  const id = props.match.params.id;
+
   useEffect(() => {
     setStatus("LOADING");
     getUserProfile(id)
@@ -56,9 +62,7 @@ const Engineer = ({ props }) => {
 
         {status === "SUCCESS" && userSummary !== null
           ? (
-            <Banner first_name={userSummary.first_name} last_name={userSummary.last_name} job_title={userSummary.job_title} experience_years={userSummary.experience_years}
-              employment_date_formatted={userSummary.employment_date_formatted}
-              email={userSummary.email} personal_email={userSummary.personal_email} phone={userSummary.phone} image_url={userSummary.image_url}
+            <Banner userSummary={userSummary}
               isOwner={false}
             />
           )
@@ -80,7 +84,7 @@ const Engineer = ({ props }) => {
 
               <Summary
                 title="Profile Summary"
-                id={id}
+                id={userInfo.id}
                 profile_summary={userSummary.profile_summary}
                 isOwner={false}
 
@@ -95,26 +99,19 @@ const Engineer = ({ props }) => {
         </Grid>
 
         <Grid item xs={12}>
-          <Widget
-            title="Professional Skills Overview"
-            upperTitle
-            bodyClass={classes.fullHeightBody}
-            className={classes.card} disableWidgetMenu={true}
-          >
-
-          </Widget>
+          <Skills id={userInfo.id} isOwner={false} />
         </Grid>
 
         <Grid item xs={12}>
           <Employment title="Work History"
-            id={id} isOwner={false}
+            id={userInfo.id} isOwner={false}
             token={token} />
 
         </Grid>
         <Grid item xs={12}>
 
           <Education title="Education"
-            id={id} isOwner={false}
+            id={userInfo.id} isOwner={false}
             token={token} />
         </Grid>
         <Grid item xs={6}>
@@ -141,5 +138,3 @@ const Engineer = ({ props }) => {
     </>
   );
 }
-
-export default Engineer;

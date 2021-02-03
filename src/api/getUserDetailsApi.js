@@ -24,6 +24,44 @@ export const getAllUsers = async () => {
   }
 }
 
+export const getAllUsersSimple = async (search) => {
+  try {
+    const url = `${baseUrl}/api/v1/users/?search_type=Simple&search_value=${search}`
+    axios.defaults.headers.Authorization = `Bearer ${token}`;
+    const { data } = await axios.get(url, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+
+      },
+
+    });
+    return data
+  } catch (error) {
+    throw new Error(
+      error.message || `Oops! That's awkward. We messed up.`
+    )
+  }
+}
+
+export const getAllUsersAdvanced = async (experience, skills_list, location_id) => {
+  try {
+    const url = `${baseUrl}/api/v1/users/?search_type=Advanced&experience=${experience}&skills_list=${skills_list}&location_id=${location_id}`
+    axios.defaults.headers.Authorization = `Bearer ${token}`;
+    const { data } = await axios.get(url, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+
+      },
+
+    });
+    return data
+  } catch (error) {
+    throw new Error(
+      error.message || `Oops! That's awkward. We messed up.`
+    )
+  }
+}
+
 export const getUserProfile = async (id) => {
   try {
     const url = `${baseUrl}/api/v1/users/user_profile/${id}`

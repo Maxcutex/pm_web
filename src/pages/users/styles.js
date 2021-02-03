@@ -21,6 +21,29 @@ export default makeStyles(theme => ({
   tableOverflow: {
     overflow: 'auto'
   },
+  hover: {
+    '&:hover': {
+      backgroundColor: 'green !important',
+    },
+  },
+  user_actions: {
+    marginRight: "2rem",
+    width: "10%", display: "flex",
+  },
+  user_actions_buttons: {
+    display: "flex", marginRight: "5px",
+    "&:hover": {
+      cursor: "pointer",
+      color: theme.palette.primary.main,
+    }
+  },
+  user_actions_buttons_delete: {
+    display: "flex", marginRight: "5px",
+    "&:hover": {
+      cursor: "pointer",
+      color: theme.palette.secondary.main,
+    }
+  },
   errorMessage: {
     textAlign: "left",
     color: "#dd4646",

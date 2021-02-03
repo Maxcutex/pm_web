@@ -6,7 +6,7 @@ import useStyles from "../../styles";
 import { Search as SearchIcon } from '@material-ui/icons';
 import classnames from "classnames";
 
-const SimpleSearch = ({ handleSearchShow }) => {
+const SimpleSearch = ({ handleSearchShow, handleSearch }) => {
   const classes = useStyles();
   const [nameEmail, setNameEmail] = useState('');
 
@@ -14,9 +14,7 @@ const SimpleSearch = ({ handleSearchShow }) => {
     <div style={{ display: "flex" }}>
       <div className={classnames(classes.searchHeaderTitle)}>Simple Search</div>
       <div className={classnames(classes.searchHeaderLink)} onClick={() => {
-        console.log("asdfasdf")
         handleSearchShow("Advanced");
-        console.log("222222")
       }}>Go to Advanced</div>
     </div>
     <hr className={classes.hrDivider} />
@@ -24,7 +22,7 @@ const SimpleSearch = ({ handleSearchShow }) => {
 
       <div className={classnames(classes.formTextDiv)}>
         <TextField
-          id="nameOrEmail"
+          id="searchValue" autoComplete="new-password"
           label="Name or Email" fullWidth required
           value={nameEmail}
           onChange={e => setNameEmail(e.target.value)}
@@ -35,7 +33,9 @@ const SimpleSearch = ({ handleSearchShow }) => {
           variant="contained"
           color="default"
           className={classes.button}
-          startIcon={<SearchIcon />}
+          startIcon={<SearchIcon />} onClick={() => {
+            handleSearch(nameEmail)
+          }}
         >
           Search
       </Button>

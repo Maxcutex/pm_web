@@ -18,6 +18,7 @@ import { getUserSkills, getSkills } from '../../../../api/getUserDetailsApi';
 
 const Skills = ({ id }) => {
   var classes = useStyles();
+
   const [
     userSkills,
     setUserSkills,
@@ -155,7 +156,16 @@ const Skills = ({ id }) => {
 
             ) : null
           }
-          <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" maxWidth={maxWidth} fullWidth={fullWidth}>
+          <Dialog
+            // PaperProps={{
+            //   style: {
+            //     backgroundColor: "#333",
+            //   },
+            // }}
+
+            open={open}
+            // overlayStyle={{ backgroundColor: 'transparent' }}
+            onClose={handleClose} aria-labelledby="form-dialog-title" maxWidth={maxWidth} fullWidth={fullWidth}>
             <DialogTitle id="form-dialog-title">{
               action == "Add" ? "Add Skill" : skillName}</DialogTitle>
             <DialogContent>

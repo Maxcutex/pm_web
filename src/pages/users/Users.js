@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 
 // components
@@ -13,7 +14,7 @@ import CheckBoxWithLabel from '../../components/CheckBoxes/CheckBoxWithLabel';
 
 import FormControl from '@material-ui/core/FormControl';
 //api
-import { getAllUsers, getCheckEmail } from '../../api/getUserDetailsApi';
+import { getAllUsers, getCheckEmail, getAllUsersSimple, getAllUsersAdvanced } from '../../api/getUserDetailsApi';
 import { postUserProfile } from '../../api/postUserDetailsApi';
 // styles
 import useStyles from "./styles";
@@ -25,6 +26,7 @@ import classnames from "classnames";
 
 export default function Users() {
   const classes = useStyles();
+  const history = useHistory();
   const [postedData, setPostedData] = useState('');
   const [status, setStatus] = useState('');
   const [error, setError] = useState(false);
@@ -35,6 +37,8 @@ export default function Users() {
   const [open, setOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [action, setAction] = useState("Add");
+  const [errorDisplay, setErrorDisplay] = useState("");
+  const [successDisplay, setSuccessDisplay] = useState("");
   const [actionId, setActionId] = useState(0);
   const fullWidth = true;
   const maxWidth = 'md';
@@ -48,10 +52,36 @@ export default function Users() {
   const [selectedBirthDate, setBirthDate] = useState(null);
 
   const handleSearchShow = (search) => {
-    console.log("search type bout to be")
     setSearchType(search)
-    console.log("search type has been set;")
   };
+  const handleView = (id) => {
+    let path = `/app/Engineer/${id}`
+    history.push(path);
+  }
+  const handleSimpleSearch = (search) => {
+    getAllUsersSimple(search)
+      .then(data => {
+        setUsers(data.payload.users);
+        setStatus("SUCCESS");
+      })
+      .catch(error => {
+        setStatus("ERROR");
+        setError(true)
+        setErrorMsg(error.message);
+      });
+  };
+  const handleAdvancedSearch = () => {
+    getAllUsersAdvanced()
+      .then(data => {
+        setUsers(data.payload.users);
+        setStatus("SUCCESS");
+      })
+      .catch(error => {
+        setStatus("ERROR");
+        setError(true)
+        setErrorMsg(error.message);
+      });
+  }
   const checkEmail = (email) => {
     let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -60,13 +90,17 @@ export default function Users() {
         .then(data => {
           setErrorMsg(data.msg)
           console.log("success result", data.payload)
-          if (data.payload.useable == true) {
+          if (data.payload.useable === true) {
             console.log("success logged")
             setEmailSuccess(true)
             setError(false)
+            setErrorDisplay("none")
+            setSuccessDisplay("inline-block")
           } else {
             setError(true)
             setEmailSuccess(false)
+            setErrorDisplay("inline-block")
+            setSuccessDisplay("none")
           }
 
         })
@@ -78,6 +112,8 @@ export default function Users() {
     } else {
       setError(true)
       setErrorMsg("Email is Invalid!!")
+      setErrorDisplay("inline-block")
+      setSuccessDisplay("none")
     }
 
   }
@@ -100,6 +136,7 @@ export default function Users() {
   };
 
   const handleClose = () => {
+    resetData()
     setOpen(false);
   };
 
@@ -116,6 +153,8 @@ export default function Users() {
     setBirthDate('')
     setEmployDate('')
     setIsAdmin(false)
+    setError(null)
+    setErrorMsg('');
   }
 
   const submitData = (action, id) => {
@@ -126,9 +165,9 @@ export default function Users() {
       email: email,
       gender: gender,
       location_id: location,
-      role_id: isAdmin == true ? 1 : 2,
+      role_id: isAdmin === true ? 1 : 2,
       date_of_birth: selectedBirthDate,
-      password: action == "Add" ? "123456" : "",
+      password: action === "Add" ? "123456" : "",
       employment_date: selectedEmployDate,
     }
     postUserProfile(action, id, formData)
@@ -163,10 +202,10 @@ export default function Users() {
         </div>
         <div className={classes.search_form}>
 
-          {searchType == 'Simple' ? (
-            <SimpleSearch handleSearchShow={handleSearchShow} />
+          {searchType === 'Simple' ? (
+            <SimpleSearch handleSearchShow={handleSearchShow} handleSearch={handleSimpleSearch} />
           ) : (
-              <AdvancedSearch handleSearchShow={handleSearchShow} />
+              <AdvancedSearch handleSearchShow={handleSearchShow} handleSearch={handleAdvancedSearch} />
             )}
 
         </div>
@@ -187,7 +226,7 @@ export default function Users() {
               ? (
                 <div>
                   {console.log("users=>", users)}
-                  <UsersTable data={users} />
+                  <UsersTable data={users} handleEdit={loadEditInfo} handleDelete={loadEditInfo} handleView={handleView} />
                 </div>
               ) : null}
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" maxWidth={maxWidth} fullWidth={fullWidth}>
@@ -227,12 +266,12 @@ export default function Users() {
                       }}
                     />
                     <Fade in={error}>
-                      <Typography color="secondary" className={classnames(classes.errorMessage)}>
+                      <Typography display={errorDisplay} variant="caption" color="secondary" className={classnames(classes.errorMessage)}>
                         {errorMsg}
                       </Typography>
                     </Fade>
                     <Fade in={emailSuccess}>
-                      <Typography color="primary" className={classnames(classes.successMessage)}>
+                      <Typography display={successDisplay} variant="caption" color="primary" className={classnames(classes.successMessage)}>
                         {errorMsg}
                       </Typography>
                     </Fade>
