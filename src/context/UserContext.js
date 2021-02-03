@@ -1,9 +1,9 @@
 import React from "react";
 import axios from 'axios';
-import {setUserSession, removeUserSession} from './../utils/common';
+import { setUserSession, removeUserSession } from './../utils/common';
 import { config } from '../config';
-import {getToken} from '../utils/common'
-import {isValid} from '../utils/jwtDecode'
+import { getToken } from '../utils/common'
+import { isValid } from '../utils/jwtDecode'
 
 export const baseUrl = config.PM_API_BASE_URL;
 var UserStateContext = React.createContext();
@@ -27,7 +27,7 @@ function UserProvider({ children }) {
   var [state, dispatch] = React.useReducer(userReducer, {
     isExpired: !isValid(getToken()),
     isAuthenticated: !!sessionStorage.getItem("token"),
-    
+
     token: !!getToken(),
   });
 
@@ -65,25 +65,28 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError, s
   setIsLoading(true);
 
   if (!!login && !!password) {
-    axios.post(`${baseUrl}/api/v1/users/login`, 
-    { username: login, password: password })
-    .then(response => {
-      setIsLoading(false);
-      setUserSession(response.data.payload.token, response.data.payload.user);
-      dispatch({ type: "LOGIN_SUCCESS"});
-      console.log("login successful")
-      history.push('/app/dashboard');
-    }).catch(error => {
-      console.log("error response", error.response)
-      if (error.response.status === 401 || error.response.status === 400) {
-        setErrorMsg(error.response.data.msg);
-      }
-      else {
-        setErrorMsg("Something went wrong. Please try again later.");
-      }
-      setError(true);
-      setIsLoading(false);
-    });
+    axios.post(`${baseUrl}/api/v1/users/login`,
+      { username: login, password: password })
+      .then(response => {
+        setIsLoading(false);
+        setUserSession(response.data.payload.token, response.data.payload.user);
+        dispatch({ type: "LOGIN_SUCCESS" });
+        console.log("login successful")
+        history.push('/app/dashboard');
+      }).catch(error => {
+        console.log("error response", error.response)
+        if (error.response === undefined) {
+          setErrorMsg("Something went wrong. Please try again later.");
+        }
+        else if (error.response.status === 401 || error.response.status === 400) {
+          setErrorMsg(error.response.data.msg);
+        }
+        else {
+          setErrorMsg("Something went wrong. Please try again later.");
+        }
+        setError(true);
+        setIsLoading(false);
+      });
   } else {
     setError(true);
     setIsLoading(false);
