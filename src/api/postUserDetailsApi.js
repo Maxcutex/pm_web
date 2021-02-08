@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { getToken } from "../utils/common";
-
+import { toastSuccess, toastError } from '../utils/toast'
 import { config } from '../config/index';
+// import { profileImageUpload } from '../utils/imageHelper'
 
 
 export const baseUrl = config.PM_API_BASE_URL;
@@ -147,3 +148,25 @@ export const postUserProfile = async (action, id, form_data) => {
   }
 }
 
+// export const addImageUpload = async (id, formData) => {
+
+
+//   return profileImageUpload(formData.file, formData.dataurl, (error, url) => {
+//     if (error) throw error;
+//     else {
+//       const { file, dataurl, ...rest } = formData;
+//       const reqData = { ...rest, image: url };
+
+//       return axios
+//         .post(`${baseUrl}/api/v1/users/upload_image/`, reqData)
+//         .then((response) => {
+//           const { mealItem } = response.data.payload;
+//           toastSuccess('Image successfully uploaded');
+
+//         })
+//         .catch((err) => {
+//           toastError(err.response.data.msg);
+//         });
+//     }
+//   });
+// };
