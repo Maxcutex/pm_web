@@ -36,7 +36,7 @@ const Skills = ({ id }) => {
   const [skillLevel, setSkillLevel] = useState("");
   const [experienceYears, setExperienceYears] = useState(0);
   const [action, setAction] = useState("Add");
-  const [years, setYears] = useState("");
+  // const [years, setYears] = useState("");
   const [open, setOpen] = useState(false);
   const fullWidth = true;
   const maxWidth = 'sm';
@@ -50,6 +50,7 @@ const Skills = ({ id }) => {
 
   const fetchEditData = (id) => {
     setAction("Edit");
+    setSkillId(IDBFactory)
     var singleSkillData = userSkills.find((e) => e.id === id)
     console.log(singleSkillData)
     setSkillName(singleSkillData.name)

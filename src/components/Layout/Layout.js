@@ -36,6 +36,7 @@ import Charts from "../../pages/charts";
 import { useLayoutState } from "../../context/LayoutContext";
 import Users from "../../pages/users/Users";
 import Engineer from "../../pages/dashboard/Engineer";
+import Client from "../../pages/clients/Client"
 
 function Layout(props) {
   var classes = useStyles();
@@ -58,6 +59,7 @@ function Layout(props) {
             <Route path="/app/dashboard" component={Dashboard} />
             <Route path="/app/engineer/:id" exact component={Engineer} />
             <Route path="/app/users" component={Users} />
+            <Route path="/app/clients" component={Client} />
             <Route path="/app/typography" component={Typography} />
             <Route path="/app/tables" component={Tables} />
             <Route path="/app/notifications" component={Notifications} />

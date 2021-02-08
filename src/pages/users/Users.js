@@ -179,7 +179,6 @@ export default function Users() {
 
       })
       .catch(error => {
-        console.log("error is in posting data effect", error)
         setStatus("ERROR");
       });
   }
@@ -225,7 +224,6 @@ export default function Users() {
             {status === "SUCCESS" && users !== null
               ? (
                 <div>
-                  {console.log("users=>", users)}
                   <UsersTable data={users} handleEdit={loadEditInfo} handleDelete={loadEditInfo} handleView={handleView} />
                 </div>
               ) : null}

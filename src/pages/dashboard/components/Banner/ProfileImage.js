@@ -12,12 +12,14 @@ import {
   TextField, Dialog, DialogActions,
   DialogContent, DialogContentText, DialogTitle, Button
 } from '@material-ui/core';
+// import { profileImageUpload } from '../../../../utils/imageHelper'
+// import { addImageUpload } from '../../../../api/postUserDetailsApi'
 
-
-const ProfileImage = () => {
+const ProfileImage = ({ id }) => {
   const fullWidth = true;
   const maxWidth = 'sm';
   var classes = useStyles();
+  const [userId, setUserId] = useState(id);
   const [open, setOpen] = useState(false);
   const [fileUpload, setFileUpload] = useState(null);
   const [fileUrl, setFileUrl] = useState('');
@@ -109,11 +111,14 @@ const ProfileImage = () => {
     setOpen(false);
   };
 
-  const uploadProfileImage = () => {
+  const uploadProfileImage = (id) => {
 
     const formData = new FormData();
 
-    formData.append("file", fileUpload);
+    formData.append("file", croppedImage);
+    formData.append("daturl", croppedImage);
+    formData.append("id", id);
+    // addImageUpload(id, formData)
   }
   const preview = fileUrl ? <img src={fileUrl} alt='preview' /> : null
 
@@ -163,7 +168,7 @@ const ProfileImage = () => {
         {/* <Button onClick={() => submitData(userSummary.id)} color="primary">
           {action}
         </Button> */}
-        <Button
+        <Button onClick={() => uploadProfileImage(id)}
           variant="contained"
           color="default"
           className={classes.button}

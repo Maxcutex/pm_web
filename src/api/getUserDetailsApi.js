@@ -267,3 +267,25 @@ export const getCheckEmail = async (email) => {
     )
   }
 }
+
+export const getAllClients = async (search) => {
+  try {
+    let url = `${baseUrl}/api/v1/clients/`
+    if (search !== '') {
+      url = `${url}?search=${search}`
+    }
+    axios.defaults.headers.Authorization = `Bearer ${token}`;
+    const { data } = await axios.get(url, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+
+      },
+
+    });
+    return data
+  } catch (error) {
+    throw new Error(
+      error.message || `Oops! That's awkward. We messed up.`
+    )
+  }
+}

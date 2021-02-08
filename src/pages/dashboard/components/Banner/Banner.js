@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import useStyles from '../../styles'
 import { Edit as EditIcon } from "@material-ui/icons";
 import classnames from "classnames";
-import ProfileImage from './ProfileImage'
+import ProfileImageCloud from './ProfileImageCloud'
 
 
 import {
@@ -65,7 +65,7 @@ const Banner = ({ userSummary }) => {
   return (<div>
     <div style={{ display: "flex" }}>
       <div className={classes.image}>
-        <ProfileImage />
+        <ProfileImageCloud />
       </div>
       <div className={classes.main_description}>
         <div className={classes.main_description_name}>{firstName} {lastName}</div>
